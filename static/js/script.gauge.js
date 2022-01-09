@@ -26,7 +26,7 @@ if (onMobile) {
   temp_gauge_canvas.height = window.innerWidth*0.25;
 } else {
   temp_gauge_canvas.height = gauges_div.clientHeight;
-  temp_gauge_canvas.width = window.innerWidth*0.25;
+  temp_gauge_canvas.width = window.innerWidth*0.2;
 }
 gauge_opts.colorStart = 'rgb(255, 99, 132)';
 var tempGauge = new Donut(temp_gauge_canvas).setOptions(gauge_opts);
@@ -41,8 +41,8 @@ if (onMobile) {
   hum_gauge_canvas.width = window.innerWidth*0.3;
   hum_gauge_canvas.height = window.innerWidth*0.25;
 } else {
-  hum_gauge_canvas.height = gauges_div.clientHeight;
-  hum_gauge_canvas.width = window.innerWidth*0.25;
+  hum_gauge_canvas.height = gauges_div.clientHeight
+  hum_gauge_canvas.width = window.innerWidth*0.2;
 }
 gauge_opts.colorStart = 'rgb(85,255,167)';
 var humGauge = new Donut(hum_gauge_canvas).setOptions(gauge_opts);

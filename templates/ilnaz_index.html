@@ -14,31 +14,69 @@
     <script src="{{ url_for('static', filename='js/gauge.min.js') }}"></script>
 </head>
 <body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <h1>Ilnaz Project</h1>
+            </a>
+        </div>
+    </div>
+</header>
 <div class="container">
-    <div class="charts">
-        <div class="temp-canvas chart">
-            <canvas id="temp_canvas" height="50"></canvas>
+    <div class="row">
+        <div class="col-lg-3 col-md-12 content-description">
+            <h3>Описание:</h3>
+            <p>Проект представляет собой удаленный регистратор температуры и влажности. Можно в реальном времени
+                наблюдать за данными. Бла бла бла и тд.</p>
+            <img src="{{ url_for("static", filename="img/scheme.JPG") }}" alt="">
+            <i>Cloud provided by <a href="https://vk.com/shokkerman">Aidar Ayupov</a>.</i>
         </div>
+        <div class="col dashboard">
+            <div class="charts">
+                <div class="temp-canvas chart">
+                    <canvas id="temp_canvas" height="50"></canvas>
+                </div>
 
-        <div class="hum-canvas chart">
-            <canvas id="hum_canvas" height="50"></canvas>
+                <div class="hum-canvas chart">
+                    <canvas id="hum_canvas" height="50"></canvas>
+                </div>
+            </div>
+            <div class="gauges">
+                <div class="row">
+                    <div class="col-md-6 gauge">
+                        <canvas id="temp_gauge"></canvas>
+                        <label id="temp_gauge_value"></label>
+                        <h3>Actual Temperature</h3>
+                    </div>
+                    <div class="col-md-6 gauge">
+                        <canvas id="hum_gauge"></canvas>
+                        <label id="hum_gauge_value"></label>
+                        <h3>Actual Humidity</h3>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="gauges">
-        <div class="gauge">
-            <canvas id="temp_gauge"></canvas>
-            <label id="temp_gauge_value"></label>
-            <h3>Actual Temperature</h3>
-        </div>
-        <div class="gauge">
-            <canvas id="hum_gauge"></canvas>
-            <label id="hum_gauge_value"></label>
-            <h3>Actual Humidity</h3>
-        </div>
-    </div>
-
 </div>
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Text -->
+        <section class="mb-4">
+            <h5>cloud.preposition17.ru</h5>
+        </section>
+        <!-- Section: Text -->
+    </div>
+    <!-- Grid container -->
 
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://vk.com/shokkerman">Aidar Ayupov</a>
+    </div>
+    <!-- Copyright -->
+</footer>
 
 <script src="{{ url_for('static', filename='js/script.ws.js') }}"></script>
 <script src="{{ url_for('static', filename='js/script.chart.js') }}"></script>

@@ -1,5 +1,6 @@
 import time
 import json
+import random
 
 import serial
 
@@ -41,18 +42,21 @@ with serial.Serial('COM14', 115200, timeout=1) as ser:
     send_command(ser, "AT+CIPSTA_CUR?")
     wait_response(ser, timeout=5)
 
-    # send_command(ser, f"AT+CIPSTART=0,\"TCP\",\"192.168.1.101\",80")
-    # wait_response(ser, timeout=5)
-    #
-    # data_message = json.dumps({"status": "OK"})
-    # data = f"GET /index HTTP/1.1\r\n" \
-    #        f"Accept:application/json, text/plain, */*\r\n" \
-    #        f"Content-Type:application/json;charset=UTF-8\r\n" \
-    #        f"Content-Length: {len(data_message)}\r\n" \
-    #        f"\r\n" \
-    #        f"{data_message}"
-    #
-    # send_command(ser, f"AT+CIPSEND=0,{len(data)+4}")
-    # wait_response(ser, timeout=5)
-    # send_command(ser, data)
-    # send_command(ser, "AT+CIPCLOSE=0")
+    send_command(ser, f"AT+CIPSTART=0,\"TCP\",\"192.168.1.101\",80")
+    wait_response(ser, timeout=5)
+
+    data_message = json.dumps({
+        "t": "OK",
+        "h": random.uniform(8.0, 15.0)
+    })
+    data = f"POST /index HTTP/1.1\r\n" \
+           f"Accept:application/json, text/plain, */*\r\n" \
+           f"Content-Type:application/json;charset=UTF-8\r\n" \
+           f"Content-Length: {len(data_message)}\r\n" \
+           f"\r\n" \
+           f"{data_message}"
+
+    send_command(ser, f"AT+CIPSEND=0,{len(data)+4}")
+    wait_response(ser, timeout=5)
+    send_command(ser, data)
+    send_command(ser, "AT+CIPCLOSE=0")
