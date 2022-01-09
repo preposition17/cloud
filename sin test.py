@@ -23,15 +23,15 @@ def get_noise():
         yield sin1 + sin2 + sin3 + random.uniform(0, 0.5)
 
 
-tlist = list()
-timelist = list()
+
 
 t = get_noise()
 h = get_noise()
 for i in tqdm(range(3600)):
     with open(f"ilnaz_data/{int(time.time())-i}", "w") as file:
         file.write(f"t{next(t) + 25}\n"
-                   f"h{next(h) + 10}")
+                   f"h{next(h) + 10}\n"
+                   f"b{random.choice([0, 1])}")
 
 
 

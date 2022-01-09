@@ -11,3 +11,13 @@ function waitFor(variable, callback) {
   }, 200);
 }
 
+document.addEventListener("DOMContentLoaded", function(event) {
+  var btn_state_span = document.getElementById('btn_state');
+  setInterval(function() {
+    if (!btn) {
+      btn_state_span.innerHTML = "Кнопка нажата";
+    } else {
+      btn_state_span.innerHTML = "Кнопка не нажата";
+    }
+  }, 100);
+});

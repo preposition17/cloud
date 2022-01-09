@@ -18,14 +18,7 @@ socketio = SocketIO(app)
 @app.route("/")
 def hello_world():
     print("data: ", request.json)
-    return jsonify({1:1})
-
-
-@app.route("/index")
-def index():
-    print("Headers: {", request.headers, "}")
-    print("Data: {", request.json, "}")
-    return "index"
+    return "This page in developing"
 
 
 @app.route("/ilnaz-project", methods=["GET", "POST"])
@@ -33,7 +26,8 @@ def ilnaz():
     if request.method == "POST":
         with open(f"ilnaz_data/{int(time.time())}", "w") as file:
             file.write(f"t{request.json['t']}\n"
-                       f"h{request.json['h']}")
+                       f"h{request.json['h']}\n"
+                       f"b{request.json['b']}\n")
         return "index"
     elif request.method == "GET":
 
@@ -67,8 +61,7 @@ def handle_message(data):
         filenames = [int(i) for i in filenames]
 
         first_filename = filenames[0]
-        last_filename = filenames[-1
-        ]
+        last_filename = filenames[-1]
         if time.time() - first_filename > 86400:
             try:
                 os.remove(os.path.join("ilnaz_data", str(first_filename)))
@@ -80,10 +73,12 @@ def handle_message(data):
                 filedata = file.readlines()
                 temp = filedata[0][1:6]
                 hum = filedata[1][1:6]
+                btn = filedata[2][1:6]
 
                 emit('new_data', {
                     "temp": float(temp),
                     "hum": float(hum),
+                    "btn": float(btn),
                     "time": last_filename
                 })
                 time.sleep(1)
