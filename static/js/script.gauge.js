@@ -52,7 +52,6 @@ humGauge.animationSpeed = 32; // set animation speed (32 is default value)
 humGauge.setTextField(document.getElementById('hum_gauge_value'), 1);
 
 
-
 setInterval(function() {
   tempGauge.set(temp); // set actual value
   humGauge.set(hum); // set actual value
